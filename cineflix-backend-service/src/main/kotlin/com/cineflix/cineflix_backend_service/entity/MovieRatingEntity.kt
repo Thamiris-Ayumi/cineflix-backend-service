@@ -4,11 +4,10 @@ import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "movie_ratings")
+@Table(name = "movie_rating")
 data class MovieRatingEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-
     val movieName: String,
     val username: String,
     val rating: Double,

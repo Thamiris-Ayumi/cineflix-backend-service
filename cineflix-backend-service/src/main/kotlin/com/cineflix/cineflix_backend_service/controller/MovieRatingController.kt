@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*
 class MovieRatingController(
     private val movieRatingService: MovieRatingService
 ) {
-
     @PostMapping
     fun rateMovie(@RequestBody rating: MovieRating): MovieRating =
         movieRatingService.rateMovie(rating)

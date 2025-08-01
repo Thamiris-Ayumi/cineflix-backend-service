@@ -1,18 +1,18 @@
 package com.cineflix.cineflix_backend_service.controller
 
 import com.cineflix.cineflix_backend_service.model.Movie
-import com.cineflix.cineflix_backend_service.service.MovieService
+import com.cineflix.cineflix_backend_service.service.tmdb.TmdbService
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/movies")
 class MovieController(
-    private val movieService: MovieService
+    private val tmdbService: TmdbService
 ) {
-
-    @GetMapping
-    fun getAllMovies(): List<Movie> = movieService.getAllMovies()
-
-    @GetMapping("/{name}")
-    fun getMovieByName(@PathVariable name: String): Movie? = movieService.getMovieByName(name)
+    @GetMapping("/most-popular")
+    fun getMostPopular(): ResponseEntity<List<Movie>> {
+        val movies = tmdbService.getPopularMovies()
+        return ResponseEntity.ok(movies.results)
+    }
 }
